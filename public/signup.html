@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup – WorkSphere</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        color: white;
+        position: relative;
+      }
+
+      /* Background image (same as index & login) */
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("WhatsApp Image 2025-09-03 at 22.05.40_f4b1fb67.jpg")
+          no-repeat center center/cover;
+        filter: blur(4px) brightness(0.75);
+        z-index: -2;
+      }
+
+      /* Dark overlay */
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        padding: 40px;
+        border-radius: 20px;
+        width: 380px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .container h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+      }
+
+      .input-box {
+        margin: 15px 0;
+      }
+
+      .input-box input,
+      .input-box select {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.25);
+        color: white;
+        font-size: 16px;
+      }
+
+      .input-box input::placeholder {
+        color: #ddd;
+      }
+
+      button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+        transition: all 0.5s;
+      }
+
+      button:hover::before {
+        left: 100%;
+      }
+
+      button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow:
+          0 8px 25px rgba(0, 0, 0, 0.3),
+          0 0 15px rgba(118, 75, 162, 0.6);
+      }
+
+      p {
+        margin-top: 15px;
+        font-size: 14px;
+      }
+
+      a {
+        color: #ffdd57;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="top-nav"
+      style="
+        position: fixed;
+        top: 12px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 200;
+      "
+    >
+      <div class="logo">WorkSphere – Shouryanga Solutions</div>
+      <div style="position: relative">
+        <button
+          id="hamburger"
+          aria-label="Menu"
+          style="
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+          "
+        >
+          ☰
+        </button>
+        <div
+          id="menuDropdown"
+          style="
+            display: none;
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            min-width: 140px;
+          "
+        >
+          <div style="margin-bottom: 6px">
+            <button
+              id="adminOption"
+              style="
+                background: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 8px 12px;
+                width: 100%;
+                text-align: left;
+              "
+            >
+              Admin (Login)
+            </button>
+          </div>
+          <div>
+            <button
+              id="employeeOption"
+              style="
+                background: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 8px 12px;
+                width: 100%;
+                text-align: left;
+              "
+            >
+              Employee
+            </button>
+            <div
+              id="employeeDropdown"
+              style="
+                display: none;
+                margin-top: 6px;
+                padding-top: 6px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+              "
+            >
+              <a
+                href="signup.html"
+                style="
+                  display: block;
+                  color: white;
+                  padding: 6px 12px;
+                  text-decoration: none;
+                "
+                >Signup</a
+              >
+              <a
+                href="login.html"
+                style="
+                  display: block;
+                  color: white;
+                  padding: 6px 12px;
+                  text-decoration: none;
+                "
+                >Login</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      (function () {
+        const hamburger = document.getElementById("hamburger");
+        const menu = document.getElementById("menuDropdown");
+        const adminBtn = document.getElementById("adminOption");
+        const empBtn = document.getElementById("employeeOption");
+        const empDrop = document.getElementById("employeeDropdown");
+        hamburger &&
+          hamburger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            menu.style.display =
+              menu.style.display === "block" ? "none" : "block";
+          });
+        adminBtn &&
+          adminBtn.addEventListener("click", () => {
+            window.location.href = "login.html?admin=1";
+          });
+        empBtn &&
+          empBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            empDrop.style.display =
+              empDrop.style.display === "block" ? "none" : "block";
+          });
+        document.addEventListener("click", () => {
+          if (menu) menu.style.display = "none";
+          if (empDrop) empDrop.style.display = "none";
+        });
+      })();
+    </script>
+    <div class="container">
+      <h2>Signup</h2>
+      <form id="signupForm" onsubmit="signup(event)">
+        <div class="input-box">
+          <input type="text" id="name" placeholder="Full Name" required />
+        </div>
+        <div class="input-box">
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            id="password"
+            placeholder="Password (min 8 chars)"
+            minlength="8"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <select id="role" required>
+            <option value="employee" selected>Employee</option>
+          </select>
+        </div>
+        <button type="submit">Signup</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+    <script>
+      async function signup(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document
+          .getElementById("email")
+          .value.trim()
+          .toLowerCase();
+        const password = document.getElementById("password").value;
+        const role = "employee"; // Always register as employee
+
+        try {
+          const response = await fetch(
+            "http://localhost:3000/api/auth/register",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, email, password, role }),
+            },
+          );
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || "Signup failed");
+          }
+
+          alert("Signup successful! Please login.");
+          window.location.href = "login.html";
+        } catch (error) {
+          alert("Signup failed: " + error.message);
+        }
+      }
+    </script>
+  </body>
+</html>

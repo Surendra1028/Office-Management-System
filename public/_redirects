@@ -1,0 +1,6 @@
+/admin-dashboard  /admin-dashboard.html  200
+/employee-dashboard  /employee-dashboard.html  200
+/login  /login.html  200
+/signup /signup.html 200
+/reset /reset.html 200
+/*  /index.html  200

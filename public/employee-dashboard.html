@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Dashboard – WorkSphere</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        background: url("WhatsApp Image 2025-09-03 at 22.05.40_f4b1fb67.jpg")
+          no-repeat center center/cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+        color: white;
+        position: relative;
+      }
+
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.65);
+        z-index: -1;
+      }
+
+      h2 {
+        font-size: 34px;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+      }
+
+      .dashboard {
+        width: 100%;
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      section {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(14px);
+        border-radius: 18px;
+        padding: 25px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        animation: fadeIn 1s ease;
+      }
+
+      h3 {
+        margin-bottom: 15px;
+        font-size: 22px;
+        border-left: 5px solid #00c6ff;
+        padding-left: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        color: white;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+      }
+
+      input {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin: 5px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.18);
+        color: white;
+      }
+
+      button {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        color: white;
+        font-weight: 600;
+        background: linear-gradient(135deg, #667eea, #764ba2, #6a11cb);
+        background-size: 200% 200%;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-position: right center;
+        transform: scale(1.05);
+        box-shadow: 0 6px 18px rgba(118, 75, 162, 0.5);
+      }
+
+      #welcome {
+        margin-bottom: 20px;
+        font-size: 18px;
+        opacity: 0.9;
+        text-align: center;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="top-nav"
+      style="
+        position: fixed;
+        top: 12px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 200;
+      "
+    >
+      <div class="logo">WorkSphere – Shouryanga Solutions</div>
+      <div style="position: relative">
+        <button
+          id="hamburger"
+          aria-label="Menu"
+          style="
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+          "
+        >
+          ☰
+        </button>
+        <div
+          id="menuDropdown"
+          style="
+            display: none;
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            min-width: 140px;
+          "
+        >
+          <div style="margin-bottom: 6px">
+            <button
+              id="adminOption"
+              style="
+                background: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 8px 12px;
+                width: 100%;
+                text-align: left;
+              "
+            >
+              Admin (Login)
+            </button>
+          </div>
+          <div>
+            <button
+              id="employeeOption"
+              style="
+                background: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 8px 12px;
+                width: 100%;
+                text-align: left;
+              "
+            >
+              Employee
+            </button>
+            <div
+              id="employeeDropdown"
+              style="
+                display: none;
+                margin-top: 6px;
+                padding-top: 6px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+              "
+            >
+              <a
+                href="signup.html"
+                style="
+                  display: block;
+                  color: white;
+                  padding: 6px 12px;
+                  text-decoration: none;
+                "
+                >Signup</a
+              >
+              <a
+                href="login.html"
+                style="
+                  display: block;
+                  color: white;
+                  padding: 6px 12px;
+                  text-decoration: none;
+                "
+                >Login</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      (function () {
+        const hamburger = document.getElementById("hamburger");
+        const menu = document.getElementById("menuDropdown");
+        const adminBtn = document.getElementById("adminOption");
+        const empBtn = document.getElementById("employeeOption");
+        const empDrop = document.getElementById("employeeDropdown");
+        hamburger &&
+          hamburger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            menu.style.display =
+              menu.style.display === "block" ? "none" : "block";
+          });
+        adminBtn &&
+          adminBtn.addEventListener("click", () => {
+            window.location.href = "login.html?admin=1";
+          });
+        empBtn &&
+          empBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            empDrop.style.display =
+              empDrop.style.display === "block" ? "none" : "block";
+          });
+        document.addEventListener("click", () => {
+          if (menu) menu.style.display = "none";
+          if (empDrop) empDrop.style.display = "none";
+        });
+      })();
+    </script>
+    <h2>Employee Dashboard</h2>
+    <p id="welcome"></p>
+
+    <div class="dashboard">
+      <section>
+        <h3>Apply Leave</h3>
+        <form id="leaveForm">
+          <input type="date" id="date" required />
+          <input type="text" id="reason" placeholder="Reason" required />
+          <button type="submit">Apply</button>
+        </form>
+      </section>
+
+      <section>
+        <h3>Leave Status</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="leaveList"></tbody>
+        </table>
+      </section>
+
+      <section>
+        <h3>Salary & Payslip</h3>
+        <p id="salaryDetails">No salary data yet.</p>
+        <button onclick="downloadPayslip()">Download Payslip PDF</button>
+      </section>
+
+      <section>
+        <h3>My Daily Schedule</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tbody id="mySchedule"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      (async function () {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+          window.location.href = "login.html";
+          return;
+        }
+        const headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        };
+
+        // verify user and load currentUser
+        const meRes = await fetch("/api/auth/me", { headers });
+        if (!meRes.ok) {
+          localStorage.removeItem("authToken");
+          localStorage.removeItem("currentUser");
+          window.location.href = "login.html";
+          return;
+        }
+        const meData = await meRes.json();
+        const currentUser = meData.user;
+        if (!currentUser || currentUser.role !== "employee") {
+          window.location.href = "login.html";
+          return;
+        }
+        document.getElementById("welcome").innerText =
+          "Welcome, " + currentUser.name;
+
+        // Leaves
+        async function loadLeaves() {
+          const res = await fetch("/api/leaves/my-leaves", { headers });
+          if (!res.ok) return [];
+          const j = await res.json();
+          return j.leaves || [];
+        }
+
+        async function renderLeaves() {
+          const leaves = await loadLeaves();
+          let tbody = document.getElementById("leaveList");
+          tbody.innerHTML = "";
+          leaves.forEach((l) => {
+            const d = new Date(l.date);
+            tbody.innerHTML += `<tr><td>${d.toLocaleDateString()}</td><td>${l.reason}</td><td>${l.status}</td></tr>`;
+          });
+        }
+
+        await renderLeaves();
+
+        document
+          .getElementById("leaveForm")
+          .addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const date = document.getElementById("date").value;
+            const reason = document.getElementById("reason").value;
+            const resp = await fetch("/api/leaves/apply", {
+              method: "POST",
+              headers,
+              body: JSON.stringify({ date, reason }),
+            });
+            if (resp.ok) {
+              await renderLeaves();
+              document.getElementById("leaveForm").reset();
+              alert("Leave applied successfully");
+            } else {
+              alert("Failed to apply for leave");
+            }
+          });
+
+        // Salary
+        let currentSalary = null;
+        async function loadSalary() {
+          const res = await fetch("/api/salaries/my-salary", { headers });
+          if (!res.ok) {
+            currentSalary = null;
+            document.getElementById("salaryDetails").innerText =
+              "No salary data yet.";
+            return;
+          }
+          const j = await res.json();
+          currentSalary = j.salary || null;
+          document.getElementById("salaryDetails").innerText = currentSalary
+            ? "Your Salary: " + currentSalary.amount
+            : "No salary data yet.";
+        }
+        await loadSalary();
+
+        // Schedule
+        async function loadSchedules() {
+          const res = await fetch("/api/schedules/my-schedules", { headers });
+          if (!res.ok) return [];
+          const j = await res.json();
+          return j.schedules || [];
+        }
+
+        async function renderMySchedule() {
+          const schedules = await loadSchedules();
+          let tbody = document.getElementById("mySchedule");
+          tbody.innerHTML = "";
+          schedules.forEach((s) => {
+            const d = new Date(s.date);
+            tbody.innerHTML += `<tr><td>${d.toLocaleDateString()}</td><td>${s.task}</td></tr>`;
+          });
+        }
+        await renderMySchedule();
+
+        // Payslip
+        window.downloadPayslip = function () {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          doc.text("WorkSphere – Payslip", 20, 20);
+          doc.text("Employee: " + currentUser.name, 20, 40);
+          const salaryText = currentSalary
+            ? currentSalary.amount
+            : "Not Assigned";
+          doc.text("Salary: " + salaryText, 20, 60);
+          doc.save("Payslip.pdf");
+        };
+      })();
+    </script>
+  </body>
+</html>

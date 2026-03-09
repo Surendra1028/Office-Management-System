@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkSphere – Shouryanga Solutions</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        color: white;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("WhatsApp Image 2025-09-03 at 22.05.40_f4b1fb67.jpg")
+          no-repeat center center/cover;
+        filter: blur(4px) brightness(0.75); /* <-- reduced blur from 8px to 4px */
+        z-index: -2;
+      }
+
+      /* Dark overlay */
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+
+      /* Navbar */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+      nav .logo {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      nav .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+      nav a {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 12px;
+        color: white;
+        transition: 0.3s;
+        font-weight: 500;
+      }
+      nav a:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .hero {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+      }
+      .hero h1 {
+        font-size: 60px;
+        margin-bottom: 15px;
+        margin-top: 80px;
+        text-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+      }
+
+      .hero p {
+        font-size: 20px;
+        max-width: 600px;
+        margin-bottom: 40px;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+      }
+
+      .buttons {
+        display: flex;
+        gap: 25px;
+      }
+      .btn {
+        padding: 14px 40px;
+        border-radius: 14px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+        transition: all 0.5s;
+      }
+      .btn:hover::before {
+        left: 100%;
+      }
+      .btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow:
+          0 8px 25px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(255, 255, 255, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="top-nav"
+      style="
+        position: fixed;
+        top: 12px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 200;
+      "
+    >
+      <div class="logo">WorkSphere – Shouryanga Solutions</div>
+      <div style="position: relative">
+        <button
+          id="hamburger"
+          aria-label="Menu"
+          style="
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+          "
+        >
+          ☰
+        </button>
+        <div
+          id="menuDropdown"
+          style="
+            display: none;
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            min-width: 140px;
+          "
+        >
+          <div style="margin-bottom: 6px">
+            <button
+              id="adminOption"
+              style="
+                background: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 8px 12px;
+                width: 100%;
+                text-align: left;
+              "
+            >
+              Admin (Login)
+            </button>
+          </div>
+          <div>
+            <button
+              id="employeeOption"
+              style="
+                background: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 8px 12px;
+                width: 100%;
+                text-align: left;
+              "
+            >
+              Employee
+            </button>
+            <div
+              id="employeeDropdown"
+              style="
+                display: none;
+                margin-top: 6px;
+                padding-top: 6px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+              "
+            >
+              <a
+                href="signup.html"
+                style="
+                  display: block;
+                  color: white;
+                  padding: 6px 12px;
+                  text-decoration: none;
+                "
+                >Signup</a
+              >
+              <a
+                href="login.html"
+                style="
+                  display: block;
+                  color: white;
+                  padding: 6px 12px;
+                  text-decoration: none;
+                "
+                >Login</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      (function () {
+        const hamburger = document.getElementById("hamburger");
+        const menu = document.getElementById("menuDropdown");
+        const adminBtn = document.getElementById("adminOption");
+        const empBtn = document.getElementById("employeeOption");
+        const empDrop = document.getElementById("employeeDropdown");
+        hamburger &&
+          hamburger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            menu.style.display =
+              menu.style.display === "block" ? "none" : "block";
+          });
+        adminBtn &&
+          adminBtn.addEventListener("click", () => {
+            window.location.href = "login.html?admin=1";
+          });
+        empBtn &&
+          empBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            empDrop.style.display =
+              empDrop.style.display === "block" ? "none" : "block";
+          });
+        document.addEventListener("click", () => {
+          if (menu) menu.style.display = "none";
+          if (empDrop) empDrop.style.display = "none";
+        });
+      })();
+    </script>
+
+    <nav>
+      <div class="logo">WorkSphere – Shouryanga Solutions</div>
+    </nav>
+
+    <div class="hero">
+      <h1>Welcome to WorkSphere</h1>
+      <p>
+        Manage your schedules, leaves, and salary details seamlessly with
+        Shouryanga Solutions.
+      </p>
+      <div class="buttons">
+        <a href="login.html" class="btn">Login</a>
+        <a href="signup.html" class="btn">Signup</a>
+      </div>
+    </div>
+  </body>
+</html>
