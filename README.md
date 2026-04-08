@@ -1,30 +1,45 @@
-# WorkSphere - Employee Management System
+# 🏢 Office Management System
 
-A professional Employee Management System built with Node.js, Express, MongoDB, and Vanilla JavaScript.
+A web-based application designed to manage employees, tasks, and office workflow efficiently.
 
-## Quick Start
+## 🚀 Live Demo
 
-```bash
-npm install
-npm start
-```
+(Add your deployed link here)
 
-Server runs at `http://localhost:3000`
+## 💡 About the Project
 
-## Default Admin Credentials
+The Office Management System helps organizations streamline daily operations such as employee management, task assignment, and progress tracking.
 
-- **Email:** `admin@worksphere.com`
-- **Password:** `Admin@123`
+## ✨ Features
 
-## Features
+* 👨‍💼 Employee Management (Add, Update, Delete)
+* 📋 Task Assignment & Tracking
+* 🔐 Secure Login Authentication (Admin & Employee)
+* 📊 Dashboard with real-time data
+* 📁 File/Document Management (optional)
 
-- **Admin Dashboard**: Manage employees, approve/reject leaves, set salaries, assign schedules
-- **Employee Portal**: Apply for leaves, view salary, view assigned schedules
-- **JWT Authentication**: Secure token-based authentication
-- **Role-Based Access Control**: Separate admin and employee access levels
+## 🛠️ Tech Stack
 
-## Documentation
+* HTML
+* CSS
+* JavaScript
+* Node.js
+* MongoDB
 
-- [Project Setup Guide](./PROJECT_SETUP.md)
-- [Database Setup](./DATABASE_SETUP.md)
-- [Deployment Guide](./DEPLOYMENT.md)
+
+
+## 🎯 Use Case
+
+This system is useful for small to medium organizations to manage their employees and tasks digitally, improving efficiency and productivity.
+
+## 👨‍💻 Author
+
+**Surendra Naik**
+
+## 📬 Contact
+
+Feel free to connect via portfolio or GitHub.
+
+---
+
+⭐ If you like this project, give it a star!
