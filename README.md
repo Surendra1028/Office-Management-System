@@ -4,7 +4,7 @@ A web-based application designed to manage employees, tasks, and office workflow
 
 ## 🚀 Live Demo
 
- https://surendra1028.github.io/Office-Management-System/
+ https://surendra1028.github.io/Office-Management-System/index.html
 
 ## 💡 About the Project
 
