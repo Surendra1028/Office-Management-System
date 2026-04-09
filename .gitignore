@@ -1,0 +1,24 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env
+.DS_Store
+coverage/
+dist/
+logs/
+*.log
+
+# runtime files
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
