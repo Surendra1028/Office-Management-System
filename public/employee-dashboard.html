@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Dashboard – WorkSphere</title>
+    <script src="config.js"></script>
     <style>
       body {
         margin: 0;
@@ -322,7 +323,7 @@
         };
 
         // verify user and load currentUser
-        const meRes = await fetch("/api/auth/me", { headers });
+        const meRes = await fetch(`${API_URL}/auth/me`, { headers });
         if (!meRes.ok) {
           localStorage.removeItem("authToken");
           localStorage.removeItem("currentUser");
@@ -340,7 +341,7 @@
 
         // Leaves
         async function loadLeaves() {
-          const res = await fetch("/api/leaves/my-leaves", { headers });
+          const res = await fetch(`${API_URL}/leaves/my-leaves`, { headers });
           if (!res.ok) return [];
           const j = await res.json();
           return j.leaves || [];
@@ -364,7 +365,7 @@
             e.preventDefault();
             const date = document.getElementById("date").value;
             const reason = document.getElementById("reason").value;
-            const resp = await fetch("/api/leaves/apply", {
+            const resp = await fetch(`${API_URL}/leaves/apply`, {
               method: "POST",
               headers,
               body: JSON.stringify({ date, reason }),
@@ -381,7 +382,7 @@
         // Salary
         let currentSalary = null;
         async function loadSalary() {
-          const res = await fetch("/api/salaries/my-salary", { headers });
+          const res = await fetch(`${API_URL}/salaries/my-salary`, { headers });
           if (!res.ok) {
             currentSalary = null;
             document.getElementById("salaryDetails").innerText =
@@ -398,7 +399,7 @@
 
         // Schedule
         async function loadSchedules() {
-          const res = await fetch("/api/schedules/my-schedules", { headers });
+          const res = await fetch(`${API_URL}/schedules/my-schedules`, { headers });
           if (!res.ok) return [];
           const j = await res.json();
           return j.schedules || [];

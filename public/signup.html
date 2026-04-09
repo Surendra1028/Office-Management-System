@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup – WorkSphere</title>
+    <script src="config.js"></script>
     <style>
       body {
         margin: 0;
@@ -333,14 +334,11 @@
         const role = "employee"; // Always register as employee
 
         try {
-          const response = await fetch(
-            "http://localhost:3000/api/auth/register",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ name, email, password, role }),
-            },
-          );
+          const response = await fetch(`${API_URL}/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password, role }),
+          });
 
           if (!response.ok) {
             const error = await response.json();
